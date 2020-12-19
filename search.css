@@ -2,7 +2,7 @@ body {
   max-width: 1600px;
   margin: auto;
   padding: 0;
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Raleway', 'sans';
 }
 
 .wrapper {
@@ -20,11 +20,6 @@ body {
 
 ul {
   padding: 0;
-}
-
-a {
-  text-decoration: none;
-  color: #000;
 }
 
 li {
@@ -77,22 +72,4 @@ input {
 
 section {
   margin: 90px 0 0 90px;
-}
-
-.img-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-img {
-  margin: 10px;
-  max-height: 300px;
-  border-radius: 3px;
-  box-shadow: 4px 6px 10px 0px #a2a2a261;
-  transition: transform 0.3s ease;
-}
-
-img:hover {
-  cursor: pointer;
-  transform: scale(1.03);
 }

@@ -1,20 +1,44 @@
-baseURL = "https://picsum.photos/";
-let url;
+const baseURL = "https://picsum.photos";
 
-const form = document.getElementById("form");
-const section = document.querySelector("section");
+const viewBtn = document.querySelector(".view-btn");
+const wrapper = document.querySelector(".img-wrapper");
 
-// EVENTS
+let pageNumber = 0;
 
-form.addEventListener("submit", function(e) {
-  e.preventDefault(e);
+viewBtn.addEventListener("click", fetchImages);
 
-  let width = document.getElementById("width").value;
-  let height = document.getElementById("height").value;
+function fetchImages(e) {
+  e.preventDefault();
+  let url = baseURL + "/v2/list?page=" + pageNumber + "&limit=30";
 
-  url = baseURL + `${width}` + "/" + `${height}`;
+  fetch(url)
+    .then(function(result) {
+      return result.json();
+    })
+    .then(function(json) {
+      console.log(json)
+      displayResults(json)
+    })
+}
 
-  let image = document.getElementById("img");
-  image.src = url;
-})
+function displayResults(json) {
+  let images = json;
 
+  if(images.length === 0) {
+    console.log("No results");
+  } else {
+    for (let i = 0; i < images.length; i++) {
+      let img = document.createElement("img");
+      let current = images.reverse();
+
+      console.log("Current: ", current);
+
+      img.src = json[i].download_url;
+      img.width = 400;
+      console.log(img.src)
+
+      wrapper.appendChild(img);
+    }
+  }
+ 
+}
